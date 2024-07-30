@@ -28,25 +28,26 @@ const HomePage = () => {
     }
     return title.substring(0, maxLength) + '...';
   };
-  const fetchData = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get(`https://api.artic.edu/api/v1/artworks/search`, {
-        params: {
-          page: page,
-          q: debouncedSearchQuery.length >= 3 ? debouncedSearchQuery : undefined,
-        },
-      });
-      setartworkData(response.data.data);
-      setTotalPages(Math.ceil(response.data.pagination.total / response.data.pagination.limit));
-    } catch (error) {
-      console.error('Error fetching the artworks', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+
 
   useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(`https://api.artic.edu/api/v1/artworks/search`, {
+          params: {
+            page: page,
+            q: debouncedSearchQuery.length >= 3 ? debouncedSearchQuery : undefined,
+          },
+        });
+        setartworkData(response.data.data);
+        setTotalPages(Math.ceil(response.data.pagination.total / response.data.pagination.limit));
+      } catch (error) {
+        console.error('Error fetching the artworks', error);
+      } finally {
+        setLoading(false);
+      }
+    };
     fetchData();
   }, [debouncedSearchQuery, page]);
 
