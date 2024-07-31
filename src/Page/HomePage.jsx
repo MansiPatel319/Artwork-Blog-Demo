@@ -76,7 +76,7 @@ const HomePage = () => {
               id={artwork.id}
                title={truncateTitle(artwork.title)}
               content={artwork.description}
-               imageUrl={artwork?.thumbnail?.lqip?artwork?.thumbnail?.lqip:Defaultphoto} // Make sure this is a valid URL or base64 string
+               imageUrl={artwork?.thumbnail?.lqip?artwork?.thumbnail?.lqip:Defaultphoto}
                altText={artwork.altText}
              />
            </Grid>
